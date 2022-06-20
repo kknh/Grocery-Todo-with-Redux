@@ -1,8 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-
+import { configureStore } from '@reduxjs/toolkit'
+import todosSlice from '../features/todos/todosSlice'
+import formSlice from '../features/form/formSlice'
+import alertSlice from '../features/alert/alertSlice'
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});
+	reducer: {
+		todos: todosSlice,
+		form: formSlice,
+		alert: alertSlice,
+	},
+})

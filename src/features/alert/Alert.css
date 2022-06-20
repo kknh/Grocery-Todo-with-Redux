@@ -1,0 +1,21 @@
+.alert {
+	width: 100%;
+	height: 1.3rem;
+	border-radius: 3px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.8rem;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+}
+
+.success {
+	background-color: #d4edda;
+	color: #155724;
+}
+
+.danger {
+	background-color: #f8d7da;
+	color: #721c24;
+}

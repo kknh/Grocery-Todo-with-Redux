@@ -1,0 +1,22 @@
+.todo {
+	display: flex;
+	justify-content: center;
+	margin-top: 130px;
+}
+
+.todoContainer {
+	background-color: #fff;
+	width: 90%;
+	max-width: 530px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	padding: 30px;
+	box-shadow: var(--dark-shadow);
+}
+
+.todoTitle {
+	font-size: 1.3rem;
+}
