@@ -1,28 +1,16 @@
-import {
-	addTodo,
-	editTodos,
-	selectEditingStatus,
-	selectTodoId,
-} from '../todos/todosSlice'
+import { addTodo, editTodos, selectEditingStatus } from '../todos/todosSlice'
 import { selectTitle, setTitle } from './formSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { v4 as uuidv4 } from 'uuid'
 import { added, edited, invalidInput } from '../alert/alertSlice'
 import './Form.css'
 const Form = () => {
 	const dispatch = useDispatch()
 	const editing = useSelector(selectEditingStatus)
 	const title = useSelector(selectTitle)
-	const todoId = useSelector(selectTodoId)
-
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (title.length > 0) {
-			const todo = {
-				id: uuidv4(),
-				title: title,
-			}
-			dispatch(addTodo(todo))
+			dispatch(addTodo(title))
 			dispatch(setTitle(''))
 			dispatch(added())
 		} else {
@@ -33,11 +21,7 @@ const Form = () => {
 	const handleEdit = (e) => {
 		e.preventDefault()
 		if (title.length > 0) {
-			const todo = {
-				id: todoId,
-				title: title,
-			}
-			dispatch(editTodos(todo))
+			dispatch(editTodos(title))
 			dispatch(setTitle(''))
 			dispatch(edited())
 		} else {

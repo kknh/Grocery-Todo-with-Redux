@@ -19,24 +19,24 @@ const Todos = () => {
 		dispatch(deleteTodo(id))
 		dispatch(removed())
 	}
+
 	return (
 		<div className="list">
-			{todos &&
-				todos.map((todo) => (
-					<div className="listItem" key={todo.id}>
-						<span className="listItemTitle">{todo.title}</span>
-						<div className="listItemButtons">
-							<FaEdit
-								className="editBtn"
-								onClick={() => handleEdit(todo.id, todo.title)}
-							/>
-							<FaTrash
-								className="deleteBtn"
-								onClick={() => handleDelete(todo.id)}
-							/>
-						</div>
+			{todos.map((todo) => (
+				<div className="listItem" key={todo.id}>
+					<span className="listItemTitle">{todo.title}</span>
+					<div className="listItemButtons">
+						<FaEdit
+							className="editBtn"
+							onClick={() => handleEdit(todo.id, todo.title)}
+						/>
+						<FaTrash
+							className="deleteBtn"
+							onClick={() => handleDelete(todo.id)}
+						/>
 					</div>
-				))}
+				</div>
+			))}
 
 			<button className="clearBtn" onClick={handleClear}>
 				clear items

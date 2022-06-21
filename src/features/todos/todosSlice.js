@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, nanoid } from '@reduxjs/toolkit'
 
 const todosSlice = createSlice({
 	name: 'todos',
@@ -8,26 +8,35 @@ const todosSlice = createSlice({
 			{ id: 2, title: 'Tomato' },
 		],
 		editing: false,
-		todoId: '',
+		editId: '',
 	},
 	reducers: {
-		addTodo: (state, action) => {
-			state.todos.push(action.payload)
+		addTodo: {
+			reducer(state, action) {
+				state.todos.push(action.payload)
+			},
+			prepare(title) {
+				return {
+					payload: {
+						id: nanoid(),
+						title,
+					},
+				}
+			},
 		},
 		deleteTodo: (state, action) => {
 			state.todos = state.todos.filter((todo) => todo.id !== action.payload)
 		},
 		editTodos: (state, action) => {
-			state.todos = state.todos.map((todo) =>
-				todo.id === action.payload.id ? action.payload : todo
-			)
+			const todo = state.todos.find((todo) => todo.id === state.editId)
+			todo.title = action.payload
 			state.editing = false
 		},
 		clearTodos: (state) => {
 			state.todos = []
 		},
 		startEdit: (state, action) => {
-			state.todoId = action.payload
+			state.editId = action.payload
 			state.editing = true
 		},
 	},
@@ -35,7 +44,6 @@ const todosSlice = createSlice({
 
 export const selectAllTodos = (state) => state.todos.todos
 export const selectEditingStatus = (state) => state.todos.editing
-export const selectTodoId = (state) => state.todos.todoId
 export const { addTodo, editTodos, deleteTodo, clearTodos, startEdit } =
 	todosSlice.actions
 export default todosSlice.reducer
